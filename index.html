@@ -2,11 +2,16 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>¡Sorpresa!</title>
   <style>
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
+      padding: 0;
+    }
+
+    body {
       background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd);
       background-size: 400% 400%;
       animation: gradientBG 15s ease infinite;
@@ -16,6 +21,7 @@
       height: 100vh;
       overflow: hidden;
       font-family: 'Segoe UI', sans-serif;
+      touch-action: manipulation;
     }
 
     @keyframes gradientBG {
@@ -26,8 +32,9 @@
 
     .gift-container {
       position: relative;
-      width: 220px;
-      height: 220px;
+      width: 40vw;
+      max-width: 200px;
+      aspect-ratio: 1 / 1;
       cursor: pointer;
     }
 
@@ -36,6 +43,7 @@
       height: 100%;
       object-fit: contain;
       transition: transform 0.4s ease;
+      touch-action: manipulation;
     }
 
     .gift.open {
@@ -70,10 +78,15 @@
       }
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 480px) {
       .gift-container {
-        width: 160px;
-        height: 160px;
+        width: 50vw;
+        max-width: 160px;
+      }
+
+      .confetti {
+        width: 4px;
+        height: 10px;
       }
     }
   </style>
@@ -100,8 +113,8 @@
         const confetti = document.createElement('div');
         confetti.className = 'confetti';
         confetti.style.backgroundColor = getRandomColor();
-        confetti.style.setProperty('--x', `${Math.random() * 300 - 150}px`);
-        confetti.style.setProperty('--y', `${Math.random() * 300}px`);
+        confetti.style.setProperty('--x', `${Math.random() * 150 - 75}px`);
+        confetti.style.setProperty('--y', `${Math.random() * 200}px`);
         confetti.style.left = `${Math.random() * 100}%`;
         confetti.style.top = `${Math.random() * 100}%`;
         container.appendChild(confetti);
