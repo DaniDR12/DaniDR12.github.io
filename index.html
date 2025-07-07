@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carta - Restaurante</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Raleway', sans-serif;
+    }
+
+    body {
+      background-color: #f9f9f9;
+      color: #333;
+      padding: 2rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      color: #bf2c2c;
+      transition: transform 0.3s ease;
+    }
+
+    header h1:hover {
+      transform: scale(1.05);
+    }
+
+    .menu-section {
+      margin-bottom: 3rem;
+    }
+
+    .menu-section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #bf2c2c;
+      padding-bottom: 0.5rem;
+      color: #bf2c2c;
+      transition: color 0.3s ease;
+    }
+
+    .menu-section h2:hover {
+      color: #a62222;
+    }
+
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s, box-shadow 0.2s;
+      flex-direction: column;
+    }
+
+    .menu-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .menu-item img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .menu-info {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+
+    .menu-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+
+    .menu-subtitle {
+      font-size: 0.9rem;
+      color: #444242;
+      margin-bottom: 0.3rem;
+    }
+
+    .menu-desc {
+      font-size: 0.95rem;
+      color: #666;
+      display: none;
+      margin-top: 0.5rem;
+    }
+
+    .menu-price {
+      font-weight: bold;
+      color: #444;
+      margin-bottom: 0.5rem;
+    }
+
+    .expand-btn {
+      background-color: #bf2c2c;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .expand-btn:hover {
+      background-color: #a62222;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      border-top: 1px solid #ddd;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #888;
+    }
+
+    @media (max-width: 768px) {
+      .menu-item {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Carta del Restaurante</h1>
+  </header>
+
+  <section class="menu-section tapas">
+    <h2>Tapas</h2>
+    <div class="menu-item">
+      <img src="./quesos.jpg" alt="Quesos">
+      <div class="menu-info">
+        <div class="menu-title">Tabla de quesos artesanales(160gr)</div>
+        <div class="menu-subtitle">Mezcla de diversos quesos (gallegos, españoles y franceses) mermelada y picos.</div>
+        <div class="menu-desc">
+          Selección de quesos
+          <br>
+          <br>
+          -Olavidia (Jaen):<br>
+          Queso de leche cruda de cabra con una veta de carbon en el centro hecho a partir de las pepitas de las
+          aceitunas.
+          <br>
+          <br>
+          -Montes de Alcalá BIO (Cádiz):<br>
+          Queso curado ecológico de cabra 100% payoya pasteurizado cubierto con una fina capa de aceite de oliva.
+          <br>
+          <br>
+          -Morbier (Francia):<br>
+          Queso francés de leche cruda de vaca (Montbeliard y Simmental), madurado mínimo 40 días, con una fina capa de
+          carbón vegetal en el centro. No pasteurizado
+          <br>
+          <br>
+          -Savel (Lugo):<br>
+          Queso curado de vaca jersey procedente de Chantada, con 2 meses de maduración y premiado como mejor queso azul
+          de España 2020-21. No pasteurizado.
+          <br>
+        </div>
+
+        <div class="menu-price">
+          <div style="display: flex; align-items: center; ">
+            <div class="menu-title">4€</div>
+            <img src="./cerealesgluten.png" alt="gluten" style="width:24px; height:24px; margin-left: 8px;">
+            <img src="./lacteos.png" alt="lacteos"
+              style="width:24px; height:24px; margin-left: 8px; align-self: flex-start;">
+        </div>
+        <div>
+          <button class="expand-btn" onclick="toggleInfo(this)">Ver más</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="menu-section ensaladas">
+    <h2>Fuera de carta (Consultar disponibilad)</h2>
+  </section>
+
+  <section class="menu-section postres">
+    <h2>Postres</h2>
+    <div class="menu-item">
+      <img src="./TARTA DE QUESOE.jpeg" alt="Bocadillo Jamón" >
+      <div class="menu-info">
+        <div class="menu-title">Tarta de queso al horno</div>
+      </div>
+      <div class="menu-price">
+        <div style="display: flex; align-items: center; ">
+          <div class="menu-title">6€</div>
+          <img src="./cerealesgluten.png" alt="gluten" style="width:24px; height:24px; margin-left: 8px;">
+          <img src="./lacteos.png" alt="lacteos"
+            style="width:24px; height:24px; margin-left: 8px; align-self: flex-start;">
+          <img src="./frutossecos.png" alt="gluten" style="width:24px; height:24px; margin-left: 8px;">
+          <img src="./huevos.png" alt="lacteos"
+            style="width:24px; height:24px; margin-left: 8px; align-self: flex-start;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="menu-section cervezas">
+    <h2>Cervezas</h2>
+    <div class="menu-item">
+      <img src="Estrella Galicia Beer.webp" alt="Estrella Galicia Bodega">
+      <div class="menu-info">
+        <div class="menu-title">Estrella Galicia Bodega</div>
+        <div class="menu-subtitle">Clasificación Lager Especial</div>
+        <div class="menu-desc">
+          Cerveza que, recién hecha y sin pasteurizar, llega directamente de nuestras bodegas al punto de venta. La ausencia de pasteurización requiere que su transporte se realice en frío mediante de una red de vehículos especializados y personal propio. En las cervecerías los característicos tanques mantienen su refrigeración y los mismos niveles de carbónico con los que sale de las bodegas de nuestra fábrica. Estas particulares características le confieren unos atributos sensoriales propios que la convierten en una cerveza diferente.
+        </div>
+      </div>
+      <div class="menu-price">
+        <div style="display: flex; align-items: center; ">
+          <div class="menu-title">4€</div>
+          <img src="./cerealesgluten.png" alt="gluten" style="width:24px; height:24px; margin-left: 8px;">
+        </div>
+        <div>
+          <button class="expand-btn" onclick="toggleInfo(this)">Ver más</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Restaurante. Todos los derechos reservados.
+  </footer>
+
+  <script>
+    function toggleInfo(button) {
+      // Find the closest .menu-item ancestor
+      const menuItem = button.closest('.menu-item');
+      if (!menuItem) return;
+      // Find the .menu-desc inside this .menu-item
+      const desc = menuItem.querySelector('.menu-desc');
+      if (!desc) return;
+      if (desc.style.display === 'block') {
+        desc.style.display = 'none';
+        button.textContent = 'Ver más';
+      } else {
+        desc.style.display = 'block';
+        button.textContent = 'Ver menos';
+      }
+    }
+  </script>
+</body>
+
+</html>
