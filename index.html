@@ -1,194 +1,314 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Mi Portfolio — Estado de Discord</title>
-  <meta name="description" content="Plantilla para mostrar estado de Discord en tiempo real usando Lanyard" />
-  <style>
-    :root {
-      --bg: #0f1724;
-      --card: #0b1220;
-      --muted: #9aa4b2;
-      --accent: #7c3aed;
-      --online: #2ecc71;
-      --idle: #f1c40f;
-      --dnd: #e74c3c;
-      --offline: #6b7280;
-      --glass: rgba(255, 255, 255, 0.04);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      background: linear-gradient(180deg, #071021 0%, #071127 100%);
-      color: #e6eef6;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      padding: 32px;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 960px;
-    }
-
-    .card {
-      background: var(--card);
-      border-radius: 16px;
-      padding: 20px;
-      box-shadow: 0 6px 18px rgba(2, 6, 23, 0.6);
-    }
-
-    .status-row {
-      display: flex;
-      align-items: center;
-    }
-
-    .avatar {
-      width: 86px;
-      height: 86px;
-      border-radius: 14px;
-      overflow: hidden;
-      border: 2px solid rgba(255, 255, 255, 0.05);
-      background: var(--glass);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .info {
-      flex: 1;
-      margin-left: 16px;
-    }
-
-    .name {
-      font-weight: 600;
-      font-size: 1.2rem;
-    }
-
-    .status-pill {
-      display: inline-flex;
-      align-items: center;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: var(--glass);
-      font-weight: 600;
-      font-size: 0.9rem;
-    }
-
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-    }
-
-    footer {
-      margin-top: 16px;
-      color: var(--muted);
-      font-size: 0.85rem;
-    }
-  </style>
-</head>
-
-<body>
-  <div class="container">
-    <div class="card" id="lanyard-card">
-      <div class="status-row">
-        <div class="avatar" id="avatar">
-          <div style="color:var(--muted);font-size:0.8rem">—</div>
-        </div>
-        <div class="info">
-          <div class="name" id="username">Cargando...</div>
-          <div class="status-pill" id="status-pill">
-            <span class="dot" id="status-dot" style="background:var(--offline)"></span>
-            <span id="status-text">offline</span>
-          </div>
-        </div>
-      </div>
-      <footer>
-        <div id="connection-status">WS: desconectado</div>
-      </footer>
-    </div>
-  </div>
-
-  <script>
-    const DISCORD_ID = '409474987750326293'; // Your Discord ID
-
-    const state = {
-      ws: null,
-      interval: null,
-      seq: null,
-      connected: false
-    };
-
-    const $ = id => document.getElementById(id);
-
-    function setConnectionText(text) {
-      $('connection-status').textContent = 'WS: ' + text;
-    }
-
-    function setPresence(data) {
-      if (!data) return;
-      const user = data.user || {};
-      const status = data.discord_status || 'offline';
-
-      // Avatar
-      const avatarEl = $('avatar');
-      avatarEl.innerHTML = '';
-      const img = document.createElement('img');
-      const avatarHash = user.avatar;
-      img.src = avatarHash ? `https://cdn.discordapp.com/avatars/${user.id}/${avatarHash}.png?size=512` : `https://cdn.discordapp.com/embed/avatars/${(user.discriminator % 5)}.png`;
-      avatarEl.appendChild(img);
-
-      // Username / status
-      $('username').textContent = user.username || '—';
-      const colorMap = { online: 'var(--online)', idle: 'var(--idle)', dnd: 'var(--dnd)', offline: 'var(--offline)' };
-      $('status-dot').style.background = colorMap[status] || 'var(--offline)';
-      $('status-text').textContent = status;
-    }
-
-    function connectWS() {
-      const url = 'wss://api.lanyard.rest/socket';
-      state.ws = new WebSocket(url);
-
-      state.ws.onopen = () => {
-        setConnectionText('conectado');
-        state.connected = true;
-        state.ws.send(JSON.stringify({ op: 2, d: { subscribe_to_id: DISCORD_ID } }));
-      };
-
-      state.ws.onmessage = (msg) => {
-        const data = JSON.parse(msg.data);
-        if (data.s) state.seq = data.s;
-        if (data.t === 'PRESENCE_UPDATE') {
-          setPresence(data.d);
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portfolio con Discord</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .discord-container {
+            transition: all 0.3s ease;
         }
-      };
+        .discord-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .status-circle {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 6px;
+        }
+        .online { background-color: #3ba55c; }
+        .idle { background-color: #faa61a; }
+        .dnd { background-color: #ed4245; }
+        .offline { background-color: #737f8d; }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .streaming { 
+            background-color: #593695;
+            animation: pulse 2s infinite;
+        }
+        
+        .activity-icon {
+            border-radius: 4px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen">
+    <header class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center">
+            <h1 class="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+                Mi Portfolio Creativo
+            </h1>
+            <p class="mt-6 text-xl text-gray-400 max-w-3xl mx-auto">
+                Diseño, desarrollo y creo experiencias digitales únicas. Mira mi actividad actual en Discord:
+            </p>
+        </div>
+    </header>
 
-      state.ws.onclose = () => {
-        setConnectionText('desconectado');
-        state.connected = false;
-        setTimeout(connectWS, 5000); // Reconnect after 5 seconds
-      };
-    }
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-gray-800 rounded-xl p-6 discord-container">
+                <h2 class="text-2xl font-semibold mb-4 flex items-center">
+                    <img src="https://placehold.co/24x24/discord/white?text=D" alt="Ícono Discord" class="mr-2">
+                    Estado en Discord
+                </h2>
+                
+                <div id="discord-status" class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <div id="discord-username" class="text-xl font-medium">Cargando...</div>
+                            <div id="discord-status-text" class="text-gray-400 flex items-center mt-1">
+                                <span id="status-badge" class="status-circle offline"></span>
+                                <span id="status-text">Conectando a Lanyard...</span>
+                            </div>
+                        </div>
+                        <div id="discord-avatar" class="w-16 h-16 rounded-full overflow-hidden">
+                            <img id="avatar-img" src="https://placehold.co/64x64/7289da/white?text=?" alt="Avatar de Discord no cargado" onerror="this.src='https://placehold.co/64x64/7289da/white?text=?'" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    
+                    <div id="discord-activity" class="hidden bg-gray-900 rounded-lg p-4">
+                        <h3 class="text-sm font-semibold text-gray-400 mb-2">Actualmente</h3>
+                        <div id="activity-content" class="flex items-center space-x-3">
+                            <!-- Activity content will be inserted here -->
+                        </div>
+                    </div>
+                    
+                    <div id="discord-spotify" class="hidden bg-gray-900 rounded-lg p-4">
+                        <h3 class="text-sm font-semibold text-gray-400 mb-2">Escuchando en Spotify</h3>
+                        <div id="spotify-content" class="flex items-center space-x-3">
+                            <!-- Spotify content will be inserted here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-gray-800 rounded-xl p-6">
+                <h2 class="text-2xl font-semibold mb-4">Sobre Mí</h2>
+                <img src="https://placehold.co/800x450/1e293b/white?text=Sobre+mi" alt="Persona trabajando en una computadora con múltiples monitores en un entorno de oficina moderno" class="w-full h-auto rounded-lg mb-4">
+                <p class="text-gray-300 mb-4">
+                    Soy un apasionado desarrollador y diseñador con experiencia en crear soluciones digitales innovadoras. Me especializo en interfaces de usuario atractivas y experiencias interactivas memorables.
+                </p>
+                <p class="text-gray-300">
+                    Cuando no estoy programando, puedes encontrarme compartiendo ideas en Discord, colaborando en proyectos de código abierto o explorando nuevas tecnologías.
+                </p>
+            </div>
+        </div>
+        
+        <div class="mt-12">
+            <h2 class="text-3xl font-bold mb-8 text-center">Mis Proyectos</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-gray-800 rounded-xl overflow-hidden hover:transform hover:-translate-y-1 transition-transform duration-200">
+                    <div class="h-48">
+                        <img src="https://placehold.co/600x400/1e293b/white?text=Proyecto+1" alt="Dashboard moderno con gráficos y estadísticas mostrando análisis de datos en tiempo real" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold">Dashboard Analítico</h3>
+                        <p class="text-gray-400 mt-2">Visualización de datos en tiempo real con React y D3.js</p>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800 rounded-xl overflow-hidden hover:transform hover:-translate-y-1 transition-transform duration-200">
+                    <div class="h-48">
+                        <img src="https://placehold.co/600x400/1e293b/white?text=Proyecto+2" alt="Interfaz móvil de una aplicación de redes sociales con diseño minimalista y colores vibrantes" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold">Social App</h3>
+                        <p class="text-gray-400 mt-2">Red social móvil con autenticación y mensajería en tiempo real</p>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800 rounded-xl overflow-hidden hover:transform hover:-translate-y-1 transition-transform duration-200">
+                    <div class="h-48">
+                        <img src="https://placehold.co/600x400/1e293b/white?text=Proyecto+3" alt="Inteligencia artificial procesando lenguaje natural con visualización de datos y gráficos de red neuronal" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold">IA Conversacional</h3>
+                        <p class="text-gray-400 mt-2">Chatbot avanzado usando procesamiento de lenguaje natural</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 
-    // Initialize WebSocket connection
-    connectWS();
-  </script>
+    <footer class="bg-gray-800 py-8 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-400">Conéctate conmigo en Discord para colaborar o charlar sobre proyectos.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Configuración - Reemplaza con tu ID de Discord
+        const DISCORD_USER_ID = 'TU_ID_DE_DISCORD_AQUI'; // Ejemplo: '123456789012345678'
+        
+        // Elementos del DOM
+        const discordUsername = document.getElementById('discord-username');
+        const statusBadge = document.getElementById('status-badge');
+        const statusText = document.getElementById('status-text');
+        const avatarImg = document.getElementById('avatar-img');
+        const discordActivity = document.getElementById('discord-activity');
+        const activityContent = document.getElementById('activity-content');
+        const discordSpotify = document.getElementById('discord-spotify');
+        const spotifyContent = document.getElementById('spotify-content');
+        
+        // Conectar a la API de Lanyard usando WebSocket para actualizaciones en tiempo real
+        function connectToLanyard() {
+            const socket = new WebSocket('wss://api.lanyard.rest/socket');
+            
+            socket.addEventListener('open', () => {
+                console.log('Conectado al WebSocket de Lanyard');
+                socket.send(JSON.stringify({
+                    op: 2,
+                    d: {
+                        subscribe_to_id: DISCORD_USER_ID
+                    }
+                }));
+            });
+            
+            socket.addEventListener('message', ({ data }) => {
+                const packet = JSON.parse(data);
+                
+                if (packet.t === 'INIT_STATE' || packet.t === 'PRESENCE_UPDATE') {
+                    updateDiscordStatus(packet.d);
+                }
+            });
+            
+            socket.addEventListener('close', () => {
+                console.log('Conexión WebSocket cerrada, reconectando...');
+                setTimeout(connectToLanyard, 5000);
+            });
+        }
+        
+        // Actualizar la UI con los datos de Discord
+        function updateDiscordStatus(data) {
+            // Datos básicos del usuario
+            const user = data.discord_user;
+            if (user) {
+                discordUsername.textContent = `${user.username}#${user.discriminator}`;
+                
+                // Actualizar avatar
+                if (user.avatar) {
+                    const avatarUrl = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.${user.avatar.startsWith('a_') ? 'gif' : 'png'}?size=256`;
+                    avatarImg.src = avatarUrl;
+                    avatarImg.alt = `Avatar de Discord de ${user.username}`;
+                }
+            }
+            
+            // Estado de conexión
+            const status = data.discord_status || 'offline';
+            statusBadge.className = 'status-circle ' + status;
+            
+            switch (status) {
+                case 'online':
+                    statusText.textContent = 'En línea';
+                    break;
+                case 'idle':
+                    statusText.textContent = 'Ausente';
+                    break;
+                case 'dnd':
+                    statusText.textContent = 'No molestar';
+                    break;
+                case 'offline':
+                    statusText.textContent = 'Desconectado';
+                    break;
+            }
+            
+            // Actividades
+            const activities = data.activities || [];
+            const spotify = activities.find(a => a.id === 'spotify:1');
+            const otherActivities = activities.filter(a => a.id !== 'spotify:1');
+            
+            // Mostrar actividad de Spotify si está disponible
+            if (spotify) {
+                discordSpotify.classList.remove('hidden');
+                
+                spotifyContent.innerHTML = `
+                    <img src="${spotify.assets.large_image.replace('spotify:', 'https://i.scdn.co/image/')}" 
+                         alt="Portada del álbum ${spotify.details} de ${spotify.state}" 
+                         class="w-16 h-16 rounded-md">
+                    <div>
+                        <div class="font-medium">${spotify.details}</div>
+                        <div class="text-sm text-gray-400">${spotify.state}</div>
+                        <div class="text-xs text-gray-500 mt-1">${spotify.album}</div>
+                        <div class="w-full bg-gray-700 rounded-full h-1.5 mt-2">
+                            <div class="bg-green-500 h-1.5 rounded-full" 
+                                 style="width: ${((Date.now() - spotify.timestamps.start) / 
+                                             (spotify.timestamps.end - spotify.timestamps.start) * 100)}%">
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                discordSpotify.classList.add('hidden');
+            }
+            
+            // Mostrar otras actividades (juegos, streams, etc.)
+            if (otherActivities.length > 0) {
+                discordActivity.classList.remove('hidden');
+                
+                activityContent.innerHTML = otherActivities.map(activity => {
+                    let iconUrl = '';
+                    
+                    if (activity.assets) {
+                        if (activity.assets.large_image) {
+                            const largeImage = activity.assets.large_image;
+                            if (largeImage.startsWith('mp:external/')) {
+                                // Imágenes de medios externos
+                                iconUrl = `https://media.discordapp.net/${largeImage.replace('mp:external/', '')}`;
+                            } else {
+                                // Imágenes de aplicaciones
+                                const appId = activity.application_id;
+                                iconUrl = `https://dcdn.dstn.to/app-icons/${appId}/${largeImage}.png`;
+                            }
+                        } else if (activity.application_id) {
+                            // Icono por defecto de la aplicación
+                            iconUrl = `https://dcdn.dstn.to/app-icons/${activity.application_id}`;
+                        }
+                    }
+                    
+                    return `
+                        <div class="flex items-center space-x-3 p-2 bg-gray-800 rounded-lg w-full">
+                            ${iconUrl ? `<img src="${iconUrl}" alt="Icono de ${activity.name}" class="w-12 h-12 activity-icon">` : ''}
+                            <div>
+                                <div class="font-medium">${activity.name}</div>
+                                ${activity.details ? `<div class="text-sm text-gray-400">${activity.details}</div>` : ''}
+                                ${activity.state ? `<div class="text-xs text-gray-500">${activity.state}</div>` : ''}
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            } else {
+                discordActivity.classList.add('hidden');
+            }
+        }
+        
+        // Iniciar la conexión cuando la página se cargue
+        window.addEventListener('DOMContentLoaded', () => {
+            if (!DISCORD_USER_ID || DISCORD_USER_ID === 409474987750326293) {
+                statusText.textContent = 'ID de Discord no configurado';
+                return;
+            }
+            
+            // Primero intentamos con una solicitud HTTP por si el WebSocket falla
+            fetch(`https://api.lanyard.rest/v1/users/${DISCORD_USER_ID}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        updateDiscordStatus(data.data);
+                    }
+                })
+                .catch(console.error);
+            
+            // Luego establecemos la conexión WebSocket para actualizaciones en tiempo real
+            connectToLanyard();
+        });
+    </script>
 </body>
-
 </html>
