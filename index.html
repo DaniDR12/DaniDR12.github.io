@@ -61,6 +61,10 @@
             border-radius: 4px;
             object-fit: cover;
         }
+
+        .clickable {
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -68,10 +72,12 @@
     <header class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div class="text-center">
             <h1 class="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-                Mi Portfolio Creativo
+                Mi Pequeña Página
             </h1>
             <p class="mt-6 text-xl text-gray-400 max-w-3xl mx-auto">
-                Diseño, desarrollo y creo experiencias digitales únicas. Mira mi actividad actual en Discord:
+                Me aburría e hice esta página en la que puedes ver que estoy haciendo.
+                <br>
+                Si tego el PC encendido y si me apetece que lo veas claro.
             </p>
         </div>
     </header>
@@ -124,13 +130,16 @@
                     alt="Persona trabajando en una computadora con múltiples monitores en un entorno de oficina moderno"
                     class="w-full h-auto rounded-lg mb-4">
                 <p class="text-gray-300 mb-4">
-                    Soy un apasionado desarrollador y diseñador con experiencia en crear soluciones digitales
-                    innovadoras. Me especializo en interfaces de usuario atractivas y experiencias interactivas
-                    memorables.
+                    Estudio Ingeniería Informática, o lo intento. En mi tiempo libre hago cosas como esta página o mato
+                    el tiempo en algún jueguito, como estarás viendo arriba.
+                    <br>
+                    Si estoy ausente o offline, estoy en el gym o haciendome el interesante.
                 </p>
                 <p class="text-gray-300">
-                    Cuando no estoy programando, puedes encontrarme compartiendo ideas en Discord, colaborando en
-                    proyectos de código abierto o explorando nuevas tecnologías.
+                    También puedes ver lo que estoy escuchando en Spotify en caso de que seas más cotilla.
+                    <br>
+                    <br>
+                    Por cierto no sé quién es de la foto pero va dura.
                 </p>
             </div>
         </div>
@@ -143,11 +152,12 @@
                     <div class="h-48">
                         <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/44e12c99-0120-4b16-b2de-9892ff118b44.png"
                             alt="Dashboard moderno con gráficos y estadísticas mostrando análisis de datos en tiempo real"
-                            class="w-full h-full object-cover" onclick="window.open('./docs/cv.pdf', '_blank')">
+                            class="w-full h-full object-cover clickable"
+                            onclick="window.open('./docs/cv.pdf', '_blank')">
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-semibold">CV</h3>
-                        <p class="text-gray-400 mt-2">Curriculum Vitae</p>
+                        <p class="text-gray-400 mt-2">Curriculum Vitae, para tenerlo a mano.</p>
                     </div>
                 </div>
 
@@ -156,11 +166,13 @@
                     <div class="h-48">
                         <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0ceddf8c-440d-4dff-a1c1-be72125e6f82.png"
                             alt="Interfaz móvil de una aplicación de redes sociales con diseño minimalista y colores vibrantes"
-                            class="w-full h-full object-cover">
+                            class="w-full h-full object-cover clickable"
+                            onclick="window.open('./Menu/index.html', '_blank')">
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold">Social App</h3>
-                        <p class="text-gray-400 mt-2">Red social móvil con autenticación y mensajería en tiempo real</p>
+                        <h3 class="text-xl font-semibold">Menú de Restaurante</h3>
+                        <p class="text-gray-400 mt-2">Menú para un restaurante ficticio por si algún día alguno real me
+                            contrata para digitalizar el suyo. <br> (Cuidado con el modo oscuro)</p>
                     </div>
                 </div>
 
@@ -169,11 +181,12 @@
                     <div class="h-48">
                         <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4ebf122a-6602-4bc7-a0e5-d59d8ca1b075.png"
                             alt="Inteligencia artificial procesando lenguaje natural con visualización de datos y gráficos de red neuronal"
-                            class="w-full h-full object-cover">
+                            class="w-full h-full object-cover clickable"
+                            onclick="window.open('./docs/xd.mp4', '_blank')">
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold">IA Conversacional</h3>
-                        <p class="text-gray-400 mt-2">Chatbot avanzado usando procesamiento de lenguaje natural</p>
+                        <h3 class="text-xl font-semibold">Para futuros "proyectos"</h3>
+                        <p class="text-gray-400 mt-2">Ser fotógrafo no es un trabajo.</p>
                     </div>
                 </div>
             </div>
@@ -268,7 +281,7 @@
             const otherActivities = activities.filter(a => a.id !== 'spotify:1');
 
             // Mostrar actividad de Spotify si está disponible
-            if (spotify) {
+            if (spotify && status === 'online') {
                 discordSpotify.classList.remove('hidden');
 
                 spotifyContent.innerHTML = `
