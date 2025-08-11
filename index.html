@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,10 +10,12 @@
         .discord-container {
             transition: all 0.3s ease;
         }
+
         .discord-container:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
         }
+
         .status-circle {
             width: 12px;
             height: 12px;
@@ -20,26 +23,47 @@
             display: inline-block;
             margin-right: 6px;
         }
-        .online { background-color: #3ba55c; }
-        .idle { background-color: #faa61a; }
-        .dnd { background-color: #ed4245; }
-        .offline { background-color: #737f8d; }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+
+        .online {
+            background-color: #3ba55c;
         }
-        .streaming { 
+
+        .idle {
+            background-color: #faa61a;
+        }
+
+        .dnd {
+            background-color: #ed4245;
+        }
+
+        .offline {
+            background-color: #737f8d;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .streaming {
             background-color: #593695;
             animation: pulse 2s infinite;
         }
-        
+
         .activity-icon {
             border-radius: 4px;
             object-fit: cover;
         }
     </style>
 </head>
+
 <body class="bg-gray-900 text-gray-100 min-h-screen">
     <header class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div class="text-center">
@@ -56,10 +80,10 @@
         <div class="grid grid-cols-1 gap-8">
             <div class="bg-gray-800 rounded-xl min-h-40 px-6 discord-container ">
                 <h2 class="text-2xl font-semibold mb-4 flex items-center ">
-                    
+
                     <br>Estado en Discord
                 </h2>
-                
+
                 <div id="discord-status" class="space-y-4">
                     <div class="flex items-center justify-between">
                         <div>
@@ -70,67 +94,82 @@
                             </div>
                         </div>
                         <div id="discord-avatar" class="w-16 h-16 rounded-full overflow-hidden">
-                            <img id="avatar-img" src="./docs/inte.png" alt="Avatar de Discord no cargado"  class="w-full h-full object-cover">
+                            <img id="avatar-img" src="./docs/inte.png" alt="Avatar de Discord no cargado"
+                                class="w-full h-full object-cover">
                             <br>
                         </div>
                     </div>
-                    
+
                     <div id="discord-activity" class="hidden bg-gray-900 rounded-lg p-4">
                         <h3 class="text-sm font-semibold text-gray-400 mb-2">Actualmente</h3>
                         <div id="activity-content" class="flex items-center space-x-3">
                             <!-- Activity content will be inserted here -->
                         </div>
                     </div>
-                    
+
                     <div id="discord-spotify" class="hidden bg-gray-900 rounded-lg p-4">
                         <h3 class="text-sm font-semibold text-gray-400 mb-2">Escuchando en Spotify</h3>
                         <div id="spotify-content" class="flex items-center space-x-3">
                             <!-- Spotify content will be inserted here -->
                         </div>
-                        
+
                     </div>
-                    
+
                 </div>
             </div>
-            
+
             <div class="bg-gray-800 rounded-xl p-6">
                 <h2 class="text-2xl font-semibold mb-4">Sobre Mí</h2>
-                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d7ebffa2-f39d-427c-9961-3b5a0954dbfc.png" alt="Persona trabajando en una computadora con múltiples monitores en un entorno de oficina moderno" class="w-full h-auto rounded-lg mb-4">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d7ebffa2-f39d-427c-9961-3b5a0954dbfc.png"
+                    alt="Persona trabajando en una computadora con múltiples monitores en un entorno de oficina moderno"
+                    class="w-full h-auto rounded-lg mb-4">
                 <p class="text-gray-300 mb-4">
-                    Soy un apasionado desarrollador y diseñador con experiencia en crear soluciones digitales innovadoras. Me especializo en interfaces de usuario atractivas y experiencias interactivas memorables.
+                    Soy un apasionado desarrollador y diseñador con experiencia en crear soluciones digitales
+                    innovadoras. Me especializo en interfaces de usuario atractivas y experiencias interactivas
+                    memorables.
                 </p>
                 <p class="text-gray-300">
-                    Cuando no estoy programando, puedes encontrarme compartiendo ideas en Discord, colaborando en proyectos de código abierto o explorando nuevas tecnologías.
+                    Cuando no estoy programando, puedes encontrarme compartiendo ideas en Discord, colaborando en
+                    proyectos de código abierto o explorando nuevas tecnologías.
                 </p>
             </div>
         </div>
-        
+
         <div class="mt-12">
             <h2 class="text-3xl font-bold mb-8 text-center">Mis Cosas</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-gray-800 rounded-xl overflow-hidden hover:transform hover:-translate-y-1 transition-transform duration-200">
+                <div
+                    class="bg-gray-800 rounded-xl overflow-hidden hover:transform hover:-translate-y-1 transition-transform duration-200">
                     <div class="h-48">
-                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/44e12c99-0120-4b16-b2de-9892ff118b44.png" alt="Dashboard moderno con gráficos y estadísticas mostrando análisis de datos en tiempo real" class="w-full h-full object-cover" onclick="window.open('./docs/cv.pdf', '_blank')">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/44e12c99-0120-4b16-b2de-9892ff118b44.png"
+                            alt="Dashboard moderno con gráficos y estadísticas mostrando análisis de datos en tiempo real"
+                            class="w-full h-full object-cover" onclick="window.open('./docs/cv.pdf', '_blank')">
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-semibold">CV</h3>
                         <p class="text-gray-400 mt-2">Curriculum Vitae</p>
                     </div>
                 </div>
-                
-                <div class="bg-gray-800 rounded-xl overflow-hidden hover:transform hover:-translate-y-1 transition-transform duration-200">
+
+                <div
+                    class="bg-gray-800 rounded-xl overflow-hidden hover:transform hover:-translate-y-1 transition-transform duration-200">
                     <div class="h-48">
-                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0ceddf8c-440d-4dff-a1c1-be72125e6f82.png" alt="Interfaz móvil de una aplicación de redes sociales con diseño minimalista y colores vibrantes" class="w-full h-full object-cover">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0ceddf8c-440d-4dff-a1c1-be72125e6f82.png"
+                            alt="Interfaz móvil de una aplicación de redes sociales con diseño minimalista y colores vibrantes"
+                            class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-semibold">Social App</h3>
                         <p class="text-gray-400 mt-2">Red social móvil con autenticación y mensajería en tiempo real</p>
                     </div>
                 </div>
-                
-                <div class="bg-gray-800 rounded-xl overflow-hidden hover:transform hover:-translate-y-1 transition-transform duration-200">
+
+                <div
+                    class="bg-gray-800 rounded-xl overflow-hidden hover:transform hover:-translate-y-1 transition-transform duration-200">
                     <div class="h-48">
-                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4ebf122a-6602-4bc7-a0e5-d59d8ca1b075.png" alt="Inteligencia artificial procesando lenguaje natural con visualización de datos y gráficos de red neuronal" class="w-full h-full object-cover">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4ebf122a-6602-4bc7-a0e5-d59d8ca1b075.png"
+                            alt="Inteligencia artificial procesando lenguaje natural con visualización de datos y gráficos de red neuronal"
+                            class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-semibold">IA Conversacional</h3>
@@ -150,7 +189,7 @@
     <script>
         // Configuración - Reemplaza con tu ID de Discord
         const DISCORD_USER_ID = '409474987750326293'; // Ejemplo: '123456789012345678'
-        
+
         // Elementos del DOM
         const discordUsername = document.getElementById('discord-username');
         const statusBadge = document.getElementById('status-badge');
@@ -160,11 +199,11 @@
         const activityContent = document.getElementById('activity-content');
         const discordSpotify = document.getElementById('discord-spotify');
         const spotifyContent = document.getElementById('spotify-content');
-        
+
         // Conectar a la API de Lanyard usando WebSocket para actualizaciones en tiempo real
         function connectToLanyard() {
             const socket = new WebSocket('wss://api.lanyard.rest/socket');
-            
+
             socket.addEventListener('open', () => {
                 console.log('Conectado al WebSocket de Lanyard');
                 socket.send(JSON.stringify({
@@ -174,28 +213,28 @@
                     }
                 }));
             });
-            
+
             socket.addEventListener('message', ({ data }) => {
                 const packet = JSON.parse(data);
-                
+
                 if (packet.t === 'INIT_STATE' || packet.t === 'PRESENCE_UPDATE') {
                     updateDiscordStatus(packet.d);
                 }
             });
-            
+
             socket.addEventListener('close', () => {
                 console.log('Conexión WebSocket cerrada, reconectando...');
                 setTimeout(connectToLanyard, 5000);
             });
         }
-        
+
         // Actualizar la UI con los datos de Discord
         function updateDiscordStatus(data) {
             // Datos básicos del usuario
             const user = data.discord_user;
             if (user) {
                 discordUsername.textContent = `${user.username}`;
-                
+
                 // Actualizar avatar
                 if (user.avatar) {
                     const avatarUrl = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.${user.avatar.startsWith('a_') ? 'gif' : 'png'}?size=256`;
@@ -203,11 +242,11 @@
                     avatarImg.alt = `Avatar de Discord de ${user.username}`;
                 }
             }
-            
+
             // Estado de conexión
             const status = data.discord_status || 'offline';
             statusBadge.className = 'status-circle ' + status;
-            
+
             switch (status) {
                 case 'online':
                     statusText.textContent = 'En línea';
@@ -222,44 +261,45 @@
                     statusText.textContent = 'Desconectado';
                     break;
             }
-            
+
             // Actividades
             const activities = data.activities || [];
             const spotify = activities.find(a => a.id === 'spotify:1');
             const otherActivities = activities.filter(a => a.id !== 'spotify:1');
-            
+
             // Mostrar actividad de Spotify si está disponible
             if (spotify) {
                 discordSpotify.classList.remove('hidden');
-                
+
                 spotifyContent.innerHTML = `
-                    <img src="${spotify.assets.large_image.replace('spotify:', 'https://i.scdn.co/image/')}" 
-                         alt="Portada del álbum ${spotify.details} de ${spotify.state}" 
-                         class="w-16 h-16 rounded-md">
-                    <div>
-                        <div class="font-medium">${spotify.details}</div>
-                        <div class="text-sm text-gray-400">${spotify.state}</div>
-                        
-                        <div class="w-full bg-gray-700 rounded-full h-1.5 mt-2">
-                            <div class="bg-green-500 h-1.5 rounded-full" 
-                                 style="width: ${((Date.now() - spotify.timestamps.start) / 
-                                             (spotify.timestamps.end - spotify.timestamps.start) * 100)}%">
-                                             <br>
-                            </div>
-                        </div>
+        <div class="flex items-center space-x-3 bg-gray-800 p-3 rounded-lg w-full">
+            <img src="${spotify.assets.large_image.replace('spotify:', 'https://i.scdn.co/image/')}" 
+                 alt="Portada del álbum ${spotify.details} de ${spotify.state}" 
+                 class="w-16 h-16 rounded-md">
+            <div class="flex-1">
+                <div class="font-medium">${spotify.details}</div>
+                <div class="text-sm text-gray-400">${spotify.state}</div>
+                <div class="w-full bg-gray-700 rounded-full h-1.5 mt-2">
+                    <div class="bg-green-500 h-1.5 rounded-full" 
+                         style="width: ${((Date.now() - spotify.timestamps.start) /
+                        (spotify.timestamps.end - spotify.timestamps.start) * 100)}%">
                     </div>
-                `;
+                </div>
+            </div>
+        </div>
+    `;
             } else {
                 discordSpotify.classList.add('hidden');
             }
-            
+
+
             // Mostrar otras actividades (juegos, streams, etc.)
             if (otherActivities.length > 0) {
                 discordActivity.classList.remove('hidden');
-                
+
                 activityContent.innerHTML = otherActivities.map(activity => {
                     let iconUrl = '';
-                    
+
                     if (activity.assets) {
                         if (activity.assets.large_image) {
                             const largeImage = activity.assets.large_image;
@@ -282,7 +322,7 @@
                             }
                         }
                     }
-                    
+
                     return `
                         <div class="flex items-center space-x-3 p-2 bg-gray-800 rounded-lg w-full">
                             ${iconUrl ? `
@@ -303,14 +343,14 @@
                 discordActivity.classList.add('hidden');
             }
         }
-        
+
         // Iniciar la conexión cuando la página se cargue
         window.addEventListener('DOMContentLoaded', () => {
             if (!DISCORD_USER_ID || DISCORD_USER_ID === 'TU_ID_DE_DISCORD_AQUI') {
                 statusText.textContent = 'ID de Discord no configurado';
                 return;
             }
-            
+
             // Primero intentamos con una solicitud HTTP por si el WebSocket falla
             fetch(`https://api.lanyard.rest/v1/users/${DISCORD_USER_ID}`)
                 .then(response => response.json())
@@ -320,10 +360,11 @@
                     }
                 })
                 .catch(console.error);
-            
+
             // Luego establecemos la conexión WebSocket para actualizaciones en tiempo real
             connectToLanyard();
         });
     </script>
 </body>
+
 </html>
