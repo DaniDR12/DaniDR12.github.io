@@ -70,12 +70,15 @@
 </head>
 
 <body class="bg-gray-900 text-gray-100 min-h-screen">
+    <button
+        class="fixed top-4 right-4 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-blue-700 transition"
+        onclick="toggleLanguage()"> 🇪🇸 / 🇺🇸 </button>
     <header class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div class="text-center">
-            <h1 class="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+            <h1 id="main-title" class="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
                 Mi Pequeña Página
             </h1>
-            <p class="mt-6 text-xl text-gray-400 max-w-3xl mx-auto">
+            <p id="main-subtitle" class="mt-6 text-xl text-gray-400 max-w-3xl mx-auto">
                 Me aburría e hice esta página en la que puedes ver que estoy haciendo.
                 <br>
                 Si tego el PC encendido y si me apetece que lo veas claro.
@@ -86,8 +89,7 @@
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
         <div class="grid grid-cols-1 gap-8">
             <div class="bg-gray-800 rounded-xl min-h-40 px-6 discord-container ">
-                <h2 class="text-2xl font-semibold mb-4 flex items-center ">
-
+                <h2 id="discord-status-title" class="text-2xl font-semibold mb-4 flex items-center ">
                     <br>Estado en Discord
                 </h2>
 
@@ -126,17 +128,16 @@
             </div>
 
             <div class="bg-gray-800 rounded-xl p-6">
-                <h2 class="text-2xl font-semibold mb-4">Sobre Mí</h2>
+                <h2 id="about-me-title" class="text-2xl font-semibold mb-4">Sobre Mí</h2>
                 <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d7ebffa2-f39d-427c-9961-3b5a0954dbfc.png"
-                    alt="Persona trabajando en una computadora con múltiples monitores en un entorno de oficina moderno"
                     class="w-full h-auto rounded-lg mb-4">
-                <p class="text-gray-300 mb-4">
+                <p id="about-me-p1" class="text-gray-300 mb-4">
                     Estudio Ingeniería Informática, o lo intento. En mi tiempo libre hago cosas como esta página o mato
                     el tiempo en algún jueguito, como estarás viendo arriba.
                     <br>
                     Si estoy ausente o offline, estoy en el gym o haciendome el interesante.
                 </p>
-                <p class="text-gray-300">
+                <p id="about-me-p2" class="text-gray-300">
                     También puedes ver lo que estoy escuchando en Spotify en caso de que seas más cotilla.
                     <br>
                     <br>
@@ -146,19 +147,18 @@
         </div>
 
         <div class="mt-12">
-            <h2 class="text-3xl font-bold mb-8 text-center">Mis Cosas</h2>
+            <h2 id="my-things-title" class="text-3xl font-bold mb-8 text-center">Mis Cosas</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div
                     class="bg-gray-800 rounded-xl overflow-hidden hover:transform hover:-translate-y-1 transition-transform duration-200">
                     <div class="h-48">
                         <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/44e12c99-0120-4b16-b2de-9892ff118b44.png"
-                            alt="Dashboard moderno con gráficos y estadísticas mostrando análisis de datos en tiempo real"
                             class="w-full h-full object-cover clickable"
                             onclick="window.open('./docs/cv.pdf', '_blank')">
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-semibold">CV</h3>
-                        <p class="text-gray-400 mt-2">Curriculum Vitae, para tenerlo a mano.</p>
+                        <p id="cv-desc" class="text-gray-400 mt-2">Curriculum Vitae, para tenerlo a mano.</p>
                     </div>
                 </div>
 
@@ -166,14 +166,13 @@
                     class="bg-gray-800 rounded-xl overflow-hidden hover:transform hover:-translate-y-1 transition-transform duration-200">
                     <div class="h-48">
                         <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0ceddf8c-440d-4dff-a1c1-be72125e6f82.png"
-                            alt="Interfaz móvil de una aplicación de redes sociales con diseño minimalista y colores vibrantes"
                             class="w-full h-full object-cover clickable"
                             onclick="window.open('./Menu/index.html', '_blank')">
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-semibold">Menú de Restaurante</h3>
-                        <p class="text-gray-400 mt-2">Menú para un restaurante ficticio por si algún día alguno real me
-                            contrata para digitalizar el suyo. <br> (Cuidado con el modo oscuro)</p>
+                        <p id="menu-desc" class="text-gray-400 mt-2">Menú para un restaurante ficticio por si algún día
+                            alguno real me contrata para digitalizar el suyo. <br> (Cuidado con el modo oscuro)</p>
                     </div>
                 </div>
 
@@ -181,13 +180,12 @@
                     class="bg-gray-800 rounded-xl overflow-hidden hover:transform hover:-translate-y-1 transition-transform duration-200">
                     <div class="h-48">
                         <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4ebf122a-6602-4bc7-a0e5-d59d8ca1b075.png"
-                            alt="Inteligencia artificial procesando lenguaje natural con visualización de datos y gráficos de red neuronal"
                             class="w-full h-full object-cover clickable"
                             onclick="window.open('./docs/xd.mp4', '_blank')">
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-semibold">Para futuros "proyectos"</h3>
-                        <p class="text-gray-400 mt-2">Ser fotógrafo no es un trabajo.</p>
+                        <p id="photo-desc" class="text-gray-400 mt-2">Ser fotógrafo no es un trabajo.</p>
                     </div>
                 </div>
             </div>
@@ -196,190 +194,12 @@
 
     <footer class="bg-gray-800 py-8 mt-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p class="text-gray-400">Jason no es un lenguaje de programación legítimo</p>
+            <p id="footer-text" class="text-gray-400">Jason no es un lenguaje de programación legítimo</p>
         </div>
     </footer>
 
-    <script>
-        // Configuración - Reemplaza con tu ID de Discord
-        const DISCORD_USER_ID = '409474987750326293'; // Ejemplo: '123456789012345678'
-
-        // Elementos del DOM
-        const discordUsername = document.getElementById('discord-username');
-        const statusBadge = document.getElementById('status-badge');
-        const statusText = document.getElementById('status-text');
-        const avatarImg = document.getElementById('avatar-img');
-        const discordActivity = document.getElementById('discord-activity');
-        const activityContent = document.getElementById('activity-content');
-        const discordSpotify = document.getElementById('discord-spotify');
-        const spotifyContent = document.getElementById('spotify-content');
-
-        // Conectar a la API de Lanyard usando WebSocket para actualizaciones en tiempo real
-        function connectToLanyard() {
-            const socket = new WebSocket('wss://api.lanyard.rest/socket');
-
-            socket.addEventListener('open', () => {
-                console.log('Conectado al WebSocket de Lanyard');
-                socket.send(JSON.stringify({
-                    op: 2,
-                    d: {
-                        subscribe_to_id: DISCORD_USER_ID
-                    }
-                }));
-            });
-
-            socket.addEventListener('message', ({ data }) => {
-                const packet = JSON.parse(data);
-
-                if (packet.t === 'INIT_STATE' || packet.t === 'PRESENCE_UPDATE') {
-                    updateDiscordStatus(packet.d);
-                }
-            });
-
-            socket.addEventListener('close', () => {
-                console.log('Conexión WebSocket cerrada, reconectando...');
-                setTimeout(connectToLanyard, 5000);
-            });
-        }
-
-        // Actualizar la UI con los datos de Discord
-        function updateDiscordStatus(data) {
-            // Datos básicos del usuario
-            const user = data.discord_user;
-            if (user) {
-                discordUsername.textContent = `${user.username}`;
-
-                // Actualizar avatar
-                if (user.avatar) {
-                    const avatarUrl = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.${user.avatar.startsWith('a_') ? 'gif' : 'png'}?size=256`;
-                    avatarImg.src = avatarUrl;
-                    avatarImg.alt = `Avatar de Discord de ${user.username}`;
-                }
-            }
-
-            // Estado de conexión
-            const status = data.discord_status || 'offline';
-            statusBadge.className = 'status-circle ' + status;
-
-            switch (status) {
-                case 'online':
-                    statusText.textContent = 'En línea';
-                    break;
-                case 'idle':
-                    statusText.textContent = 'Ausente';
-                    break;
-                case 'dnd':
-                    statusText.textContent = 'No molestar';
-                    break;
-                case 'offline':
-                    statusText.textContent = 'Desconectado';
-                    break;
-            }
-
-            // Actividades
-            const activities = data.activities || [];
-            const spotify = activities.find(a => a.id === 'spotify:1');
-            const otherActivities = activities.filter(a => a.id !== 'spotify:1');
-
-            // Mostrar actividad de Spotify si está disponible
-            if (spotify && status === 'online') {
-                discordSpotify.classList.remove('hidden');
-
-                spotifyContent.innerHTML = `
-                <img src="${spotify.assets.large_image.replace('spotify:', 'https://i.scdn.co/image/')}" 
-                    alt="Portada del álbum ${spotify.details} de ${spotify.state}" 
-                    class="w-16 h-16 rounded-md">
-                <div class="flex-1 pb-1">
-                    <div class="font-medium">${spotify.details}</div>
-                    <div class="text-sm text-gray-400">${spotify.state}</div>
-                    <div class="w-full bg-gray-700 rounded-full h-1.5 mt-2 mb-1">
-                        <div class="bg-green-500 h-1.5 rounded-full" 
-                            style="width: ${((Date.now() - spotify.timestamps.start) /
-                        (spotify.timestamps.end - spotify.timestamps.start) * 100)}%">
-                        </div>
-                    </div>
-                </div>
-            `;
-            } else {
-                discordSpotify.classList.add('hidden');
-            }
-
-
-
-
-            // Mostrar otras actividades (juegos, streams, etc.)
-            if (otherActivities.length > 0) {
-                discordActivity.classList.remove('hidden');
-
-                activityContent.innerHTML = otherActivities.map(activity => {
-                    let iconUrl = '';
-
-                    if (activity.assets) {
-                        if (activity.assets.large_image) {
-                            const largeImage = activity.assets.large_image;
-                            if (largeImage.startsWith('mp:external/')) {
-                                // Imágenes de medios externos
-                                iconUrl = `https://media.discordapp.net/${largeImage.replace('mp:external/', '')}`;
-                            } else {
-                                // Imágenes de aplicaciones
-                                const appId = activity.application_id;
-                                iconUrl = `https://cdn.discordapp.com/app-assets/${appId}/${largeImage}.png`;
-                            }
-                        } else if (activity.application_id) {
-                            // Icono por defecto de la aplicación
-                            // Try default application icon
-                            if (activity.application_id) {
-                                iconUrl = `https://cdn.discordapp.com/app-icons/${activity.application_id}.png`;
-                            } else {
-                                // Fallback to transparent pixel
-                                iconUrl = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
-                            }
-                        }
-                    }
-
-                    return `
-                        <div class="flex items-center space-x-3 p-2 bg-gray-800 rounded-lg w-full">
-                            ${iconUrl ? `
-                                <img src="${iconUrl}" 
-                                     alt="Icono de ${activity.name}" 
-                                     class="w-12 h-12 activity-icon" 
-                                     onerror="this.onerror=null;this.src='https://cdn.discordapp.com/app-icons/${activity.application_id}.png';this.style.display='${activity.application_id ? 'block' : 'none'}'">
-                            ` : ''}
-                            <div>
-                                <div class="font-medium">${activity.name}</div>
-                                ${activity.details ? `<div class="text-sm text-gray-400">${activity.details}</div>` : ''}
-                                ${activity.state ? `<div class="text-xs text-gray-500">${activity.state}</div>` : ''}
-                            </div>
-                        </div>
-                    `;
-                }).join('');
-            } else {
-                discordActivity.classList.add('hidden');
-            }
-        }
-
-        // Iniciar la conexión cuando la página se cargue
-        window.addEventListener('DOMContentLoaded', () => {
-            if (!DISCORD_USER_ID || DISCORD_USER_ID === 'TU_ID_DE_DISCORD_AQUI') {
-                statusText.textContent = 'ID de Discord no configurado';
-                return;
-            }
-
-            // Primero intentamos con una solicitud HTTP por si el WebSocket falla
-            fetch(`https://api.lanyard.rest/v1/users/${DISCORD_USER_ID}`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        updateDiscordStatus(data.data);
-                    }
-                })
-                .catch(console.error);
-
-            // Luego establecemos la conexión WebSocket para actualizaciones en tiempo real
-            connectToLanyard();
-        });
-    </script>
-    <script src="./docs/lang.js"></script>
+    <script src="./scripts/socket.js"></script>
+    <script src="./scripts/lang.js"></script>
 </body>
 
 </html>

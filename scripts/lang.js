@@ -1,14 +1,14 @@
 const translations = {
     es: {
         mainTitle: 'Mi Pequeña Página',
-        mainSubtitle: 'Me aburría e hice esta página...',
+        mainSubtitle: 'Me aburría e hice esta página en la que puedes ver que estoy haciendo.<br> Si tego el PC encendido y si me apetece que lo veas claro.',
         discordStatusTitle: '<br>Estado en Discord',
         aboutMeTitle: 'Sobre Mí',
-        aboutMeP1: 'Estudio Ingeniería Informática en la Universidad de XYZ.',
-        aboutMeP2: 'También puedes ver lo que estoy escuchando en Spotify.',
+        aboutMeP1: 'Estudio Ingeniería Informática, o lo intento. En mi tiempo libre hago cosas como esta página o mato el tiempo en algún jueguito, como estarás viendo arriba. <br> Si estoy ausente o offline, estoy en el gym o haciendome el interesante.',
+        aboutMeP2: ' También puedes ver lo que estoy escuchando en Spotify en caso de que seas más cotilla. <br> <br> Por cierto no sé quién es de la foto pero va dura.',
         myThingsTitle: 'Mis Cosas',
         cvDesc: 'Curriculum Vitae, para tenerlo a mano.',
-        menuDesc: 'Menú para un restaurante ficticio, solo por diversión.',
+        menuDesc: 'Menú para un restaurante ficticio por si algún día alguno real me contrata para digitalizar el suyo. <br> (Cuidado con el modo oscuro)',
         photoDesc: 'Ser fotógrafo no es un trabajo.',
         footerText: 'Jason no es un lenguaje de programación legítimo'
     },
