@@ -8,7 +8,11 @@ const translations = {
         aboutMeP2: ' También puedes ver lo que estoy escuchando en Spotify en caso de que seas más cotilla. <br> <br> Por cierto no sé quién es de la foto pero va dura.',
         myThingsTitle: 'Mis Cosas',
         cvDesc: 'Curriculum Vitae, para tenerlo a mano.',
+        menuTitle: 'Menú de Restaurante',
         menuDesc: 'Menú para un restaurante ficticio por si algún día alguno real me contrata para digitalizar el suyo. <br> (Cuidado con el modo oscuro)',
+        gasTitle: 'Aplicación Web de Monitoreo de Combustible',
+        gasDesc: 'Debido a la nueva moda o tendencia del "vibecoding" me he propuesto crear esta pequeña app, tanto front como back y una pequeña BD, usando exclusivamente IA sin tocar yo nada de código',
+        photoTitle: 'Para futuros "proyectos"',
         photoDesc: 'Ser fotógrafo no es un trabajo.',
         footerText: 'Jason no es un lenguaje de programación legítimo'
     },
@@ -21,7 +25,11 @@ const translations = {
         aboutMeP2: 'You can also see what I\'m listening to on Spotify.',
         myThingsTitle: 'My Stuff',
         cvDesc: 'Curriculum Vitae, to keep it handy.',
+        menuTitle: 'Restaurant Menu',
         menuDesc: 'Menu for a fictional restaurant, just for fun.',
+        gasTitle: 'Fuel Monitoring Web App',
+        gasDesc: 'Vibecode',
+        photoTitle: 'For Future "Projects"',
         photoDesc: 'Being a photographer is not a job.',
         footerText: 'Jason is not a legitimate programming language'
     }
@@ -41,7 +49,11 @@ function toggleLanguage() {
     document.getElementById('about-me-p2').innerHTML = t.aboutMeP2;
     document.getElementById('my-things-title').textContent = t.myThingsTitle;
     document.getElementById('cv-desc').innerHTML = t.cvDesc;
+    document.getElementById('menu-title').innerHTML = t.menuTitle;
     document.getElementById('menu-desc').innerHTML = t.menuDesc;
+    document.getElementById('photo-title').innerHTML = t.photoTitle;
     document.getElementById('photo-desc').innerHTML = t.photoDesc;
+    document.getElementById('gas-title').innerHTML = t.gasTitle;
+    document.getElementById('gas-desc').innerHTML = t.gasDesc;
     document.getElementById('footer-text').textContent = t.footerText;
 }
