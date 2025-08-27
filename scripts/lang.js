@@ -56,4 +56,5 @@ function toggleLanguage() {
     document.getElementById('gas-title').innerHTML = t.gasTitle;
     document.getElementById('gas-desc').innerHTML = t.gasDesc;
     document.getElementById('footer-text').textContent = t.footerText;
+    
 }
