@@ -14,9 +14,10 @@ const translations = {
         gasDesc: 'Debido a la nueva moda o tendencia del "vibecoding" me he propuesto crear esta pequeña app, tanto front como back y una pequeña BD, usando exclusivamente IA sin tocar yo nada de código',
         photoTitle: 'Para futuros "proyectos"',
         photoDesc: 'Ser fotógrafo no es un trabajo.',
-        footerText: 'Jason no es un lenguaje de programación legítimo',
         grouptaskTitle: 'Group Task',
-        grouptaskDesc: 'Aplicación web para la gestión de proyectos, permitiendo la invitación al proyecto a otros usuarios y la incorporación de tareas al mismo.'
+        grouptaskDesc: 'Aplicación web para la gestión de proyectos, permitiendo la invitación al proyecto a otros usuarios y la incorporación de tareas al mismo.',
+        footerText: 'Jason no es un lenguaje de programación legítimo'
+        
     },
     en: {
         mainTitle: 'My Little Page',
@@ -33,9 +34,10 @@ const translations = {
         gasDesc: 'Vibecode',
         photoTitle: 'For Future "Projects"',
         photoDesc: 'Being a photographer is not a job.',
-        footerText: 'Jason is not a legitimate programming language',
         grouptaskTitle: 'Group Task',
-        grouptaskDesc: 'me da pereza traducir esto'
+        grouptaskDesc: 'me da pereza traducir esto',
+        footerText: 'Jason is not a legitimate programming language'
+        
     }
 };
 
@@ -59,9 +61,10 @@ function toggleLanguage() {
     document.getElementById('photo-desc').innerHTML = t.photoDesc;
     document.getElementById('gas-title').innerHTML = t.gasTitle;
     document.getElementById('gas-desc').innerHTML = t.gasDesc;
-    document.getElementById('footer-text').textContent = t.footerText;
     document.getElementById('grouptask-title').textContent = t.grouptaskTitle;
     document.getElementById('grouptask-desc').textContent = t.grouptaskDesc;
+    document.getElementById('footer-text').textContent = t.footerText;
+    
 
     
 }
