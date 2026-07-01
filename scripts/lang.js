@@ -71,45 +71,64 @@ const translations = {
 
 let currentLanguage = 'es';
 
+// Helpers defensivos: si un id no existe en el DOM, avisan en consola
+// en vez de lanzar un error que corte el resto de la función a mitad.
+function setText(id, value) {
+    const node = document.getElementById(id);
+    if (!node) { console.warn(`[lang.js] No existe #${id} en el DOM`); return; }
+    node.textContent = value;
+}
+function setHTML(id, value) {
+    const node = document.getElementById(id);
+    if (!node) { console.warn(`[lang.js] No existe #${id} en el DOM`); return; }
+    node.innerHTML = value;
+}
+
 function toggleLanguage() {
     currentLanguage = currentLanguage === 'es' ? 'en' : 'es';
     document.documentElement.lang = currentLanguage;
     const t = translations[currentLanguage];
 
-    document.getElementById('hero-kicker').textContent = t.heroKicker;
-    document.getElementById('hero-title').innerHTML = t.heroTitle;
-    document.getElementById('hero-sub').textContent = t.heroSub;
-    document.getElementById('cta-cv').textContent = t.ctaCv;
-    document.getElementById('cta-contact').textContent = t.ctaContact;
-    document.getElementById('cta-cv-2').textContent = t.ctaCv2;
+    const btn = document.getElementById('lang-toggle-btn');
+    if (btn) btn.textContent = currentLanguage === 'es' ? 'EN' : 'ES';
 
-    document.getElementById('status-title').textContent = t.statusTitle;
-    document.getElementById('activity-label').textContent = t.activityLabel;
-    document.getElementById('spotify-label').textContent = t.spotifyLabel;
+    setText('hero-kicker', t.heroKicker);
+    setHTML('hero-title', t.heroTitle);
+    setText('hero-sub', t.heroSub);
+    setText('cta-cv', t.ctaCv);
+    setText('cta-contact', t.ctaContact);
+    setText('cta-cv-2', t.ctaCv2);
 
-    document.getElementById('about-title').textContent = t.aboutTitle;
-    document.getElementById('about-p1').innerHTML = t.aboutP1;
-    document.getElementById('about-p2').innerHTML = t.aboutP2;
-    document.getElementById('about-p3').innerHTML = t.aboutP3;
-    document.getElementById('stack-infra').textContent = t.stackInfra;
-    document.getElementById('stack-dev').textContent = t.stackDev;
-    document.getElementById('stack-sec').textContent = t.stackSec;
+    setText('status-title', t.statusTitle);
+    setText('activity-label', t.activityLabel);
+    setText('spotify-label', t.spotifyLabel);
 
-    document.getElementById('projects-title').textContent = t.projectsTitle;
-    document.getElementById('cv-title').textContent = t.cvTitle;
-    document.getElementById('cv-desc').textContent = t.cvDesc;
-    document.getElementById('cv-link').textContent = t.cvLink;
-    document.getElementById('gas-title').textContent = t.gasTitle;
-    document.getElementById('gas-desc').textContent = t.gasDesc;
-    document.getElementById('gas-link').textContent = t.gasLink;
-    document.getElementById('grouptask-title').textContent = t.grouptaskTitle;
-    document.getElementById('grouptask-desc').textContent = t.grouptaskDesc;
-    document.getElementById('grouptask-link').textContent = t.grouptaskLink;
-    document.getElementById('menu-title').textContent = t.menuTitle;
-    document.getElementById('menu-desc').textContent = t.menuDesc;
-    document.getElementById('menu-link').textContent = t.menuLink;
+    setText('about-title', t.aboutTitle);
+    setHTML('about-p1', t.aboutP1);
+    setHTML('about-p2', t.aboutP2);
+    setHTML('about-p3', t.aboutP3);
+    setText('stack-infra', t.stackInfra);
+    setText('stack-dev', t.stackDev);
+    setText('stack-sec', t.stackSec);
 
-    document.getElementById('contact-title').textContent = t.contactTitle;
-    document.getElementById('contact-sub').textContent = t.contactSub;
-    document.getElementById('footer-text').textContent = t.footerText;
+    setText('projects-title', t.projectsTitle);
+    setText('cv-title', t.cvTitle);
+    setText('cv-desc', t.cvDesc);
+    setText('cv-link', t.cvLink);
+    setText('gas-title', t.gasTitle);
+    setText('gas-desc', t.gasDesc);
+    setText('gas-link', t.gasLink);
+    setText('grouptask-title', t.grouptaskTitle);
+    setText('grouptask-desc', t.grouptaskDesc);
+    setText('grouptask-link', t.grouptaskLink);
+    setText('menu-title', t.menuTitle);
+    setText('menu-desc', t.menuDesc);
+    setText('menu-link', t.menuLink);
+
+    setText('contact-title', t.contactTitle);
+    setText('contact-sub', t.contactSub);
+    setText('footer-text', t.footerText);
 }
+
+// Confirma en consola que el script se ha cargado correctamente.
+console.log('[lang.js] cargado correctamente — botón de idioma listo.');
