@@ -4,234 +4,305 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dani — Estudiante de Ingeniería Informática especializado en infraestructura, automatización y seguridad. Homelab, trading algorítmico y proyectos self-hosted.">
     <link rel="icon" href="./docs/ico.gif" type="image/gif">
-    <title>No tengo dinero para comprar un dominio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .discord-container {
-            transition: all 0.3s ease;
-        }
-
-        .discord-container:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-
-        .status-circle {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 6px;
-        }
-
-        .online {
-            background-color: #3ba55c;
-        }
-
-        .idle {
-            background-color: #faa61a;
-        }
-
-        .dnd {
-            background-color: #ed4245;
-        }
-
-        .offline {
-            background-color: #737f8d;
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0.5;
-            }
-        }
-
-        .streaming {
-            background-color: #593695;
-            animation: pulse 2s infinite;
-        }
-
-        .activity-icon {
-            border-radius: 4px;
-            object-fit: cover;
-        }
-
-        .clickable {
-            cursor: pointer;
-        }
-    </style>
+    <title>dani@portfolio:~$</title>
+    <link rel="stylesheet" href="./styles.css">
 </head>
 
-<body class="bg-gray-900 text-gray-100 min-h-screen">
-    <button
-        class="fixed top-4 right-4 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-blue-700 transition"
-        onclick="toggleLanguage()"> 🇪🇸 / 🇺🇸 </button>
-    <header class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div class="text-center">
-            <h1 id="main-title" class="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-                Mi Pequeña Página
-            </h1>
-            <p id="main-subtitle" class="mt-6 text-xl text-gray-400 max-w-3xl mx-auto">
-                Me aburría e hice esta página en la que puedes ver que estoy haciendo.
-                <br>
-                Si tego el PC encendido y si me apetece que lo veas claro.
-            </p>
+<body>
+    <div class="scanlines" aria-hidden="true"></div>
+
+    <!-- ============ TOP BAR ============ -->
+    <header class="topbar">
+        <div class="wrap topbar-inner">
+            <div style="display:flex; align-items:center; gap:14px; min-width:0;">
+                <div class="dots" aria-hidden="true">
+                    <span class="dot red"></span>
+                    <span class="dot amber"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="topbar-path"><span class="accent">dani</span>@portfolio:<span id="topbar-cwd">~</span>$</div>
+            </div>
+            <nav class="topbar-nav">
+                <a href="#status">status</a>
+                <a href="#about">about</a>
+                <a href="#projects">projects</a>
+                <a href="#contact">contact</a>
+                <button class="lang-btn" onclick="toggleLanguage()" id="lang-toggle-btn">EN / ES</button>
+            </nav>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-        <div class="grid grid-cols-1 gap-8">
-            <div class="bg-gray-800 rounded-xl min-h-40 px-6 discord-container ">
-                <h2 id="discord-status-title" class="text-2xl font-semibold mb-4 flex items-center ">
-                    <br>Estado en Discord
-                </h2>
+    <main class="wrap">
+        <!-- ============ HERO / TERMINAL ============ -->
+        <section class="hero" style="border-top:none;" id="hero">
+            <p class="hero-kicker" id="hero-kicker">DISPONIBLE PARA PRÁCTICAS / ERASMUS · OTOÑO 2026</p>
+            <h1 id="hero-title">Construyo y aseguro<br>infraestructura <span class="hl">de verdad</span>.</h1>
+            <p class="hero-sub" id="hero-sub">
+                Estudiante de Ingeniería Informática enfocado en administración de sistemas, automatización
+                y seguridad. Fuera de clase, gestiono mi propio homelab, entreno modelos de trading algorítmico
+                y aprendo a romper (y proteger) las cosas que construyo.
+            </p>
+            <div class="hero-cta">
+                <button class="btn primary" onclick="window.open('./docs/cv.pdf', '_blank')">
+                    ↓ <span id="cta-cv">Descargar CV</span>
+                </button>
+                <a class="btn" href="https://github.com/DaniDR12" target="_blank" rel="noopener">
+                    ⌘ GitHub
+                </a>
+                <a class="btn" href="#contact"><span id="cta-contact">Contacto</span></a>
+            </div>
 
-                <div id="discord-status" class="space-y-4">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <div id="discord-username" class="text-xl font-medium">Cargando...</div>
-                            <div id="discord-status-text" class="text-gray-400 flex items-center mt-1">
-                                <span id="status-badge" class="status-circle offline"></span>
-                                <span id="status-text">Conectando a Lanyard...</span>
+            <div class="term" id="terminal">
+                <div class="term-bar">
+                    <div class="dots" aria-hidden="true">
+                        <span class="dot red"></span>
+                        <span class="dot amber"></span>
+                        <span class="dot green"></span>
+                    </div>
+                    <span class="term-title">bash — dani@portfolio</span>
+                </div>
+                <div class="term-body" id="term-body" role="log" aria-live="polite"></div>
+                <div class="term-bar" style="border-top:1px solid var(--border-soft); border-bottom:none; padding: 10px 20px;">
+                    <span class="term-prompt-label" style="font-family:var(--font-mono); font-size:13.5px;">dani@portfolio:~$</span>
+                    <input type="text" class="term-input" id="term-input" autocomplete="off" spellcheck="false"
+                        aria-label="Terminal interactiva — escribe help para ver comandos">
+                </div>
+                <div class="term-hint" id="term-hint">
+                    escribe <kbd>help</kbd> para ver comandos disponibles, o <kbd>Tab</kbd> para autocompletar
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ STATUS PANEL (Discord/Spotify) ============ -->
+        <section id="status">
+            <div class="section-head reveal">
+                <p class="section-eyebrow">live-status.monitor</p>
+                <h2 class="section-title" id="status-title">Estado en tiempo real</h2>
+            </div>
+
+            <div class="status-panel reveal">
+                <div class="status-panel-head">
+                    <span>GET /v1/presence</span>
+                    <span id="status-pill">● conectando…</span>
+                </div>
+                <div class="status-panel-body">
+                    <div class="status-row">
+                        <div class="status-user">
+                            <div class="status-avatar">
+                                <img id="avatar-img" src="./docs/inte.png" alt="Avatar de Discord">
+                            </div>
+                            <div>
+                                <div id="discord-username" class="status-name">Cargando…</div>
+                                <div class="status-line">
+                                    <span id="status-badge" class="status-circle offline"></span>
+                                    <span id="status-text">Conectando a Lanyard…</span>
+                                </div>
                             </div>
                         </div>
-                        <div id="discord-avatar" class="w-16 h-16 rounded-full overflow-hidden">
-                            <img id="avatar-img" src="./docs/inte.png" alt="Avatar de Discord no cargado"
-                                class="w-full h-full object-cover">
-                            <br>
-                        </div>
                     </div>
 
-                    <div id="discord-activity" class="hidden bg-gray-900 rounded-lg p-4">
-                        <h3 class="text-sm font-semibold text-gray-400 mb-2">Actualmente</h3>
-                        <div id="activity-content" class="flex items-center space-x-3">
-                            <!-- Activity content will be inserted here -->
-                        </div>
+                    <div id="discord-activity" class="status-block hidden">
+                        <div class="status-block-label" id="activity-label">ACTUALMENTE</div>
+                        <div id="activity-content" style="display:flex; align-items:center; gap:12px;"></div>
                     </div>
 
-                    <!-- Bloque de Spotify -->
-                    <div id="discord-spotify" class="hidden bg-gray-900 rounded-lg p-4 mt-4 mb-4"> <!-- Añadido mb-4 -->
-                        <h3 class="text-sm font-semibold text-gray-400 mb-2">Escuchando en Spotify</h3>
-                        <div id="spotify-content" class="flex items-center space-x-3 p-3 bg-gray-800 rounded-lg">
-                            <!-- Spotify content will be inserted here -->
-                        </div>
+                    <div id="discord-spotify" class="status-block hidden">
+                        <div class="status-block-label" id="spotify-label">ESCUCHANDO EN SPOTIFY</div>
+                        <div id="spotify-content" style="display:flex; align-items:center; gap:12px;"></div>
                     </div>
-                    <br>
                 </div>
             </div>
+        </section>
 
-            <div class="bg-gray-800 rounded-xl p-6">
-                <h2 id="about-me-title" class="text-2xl font-semibold mb-4">Sobre Mí</h2>
-                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d7ebffa2-f39d-427c-9961-3b5a0954dbfc.png"
-                    class="w-full h-auto rounded-lg mb-4">
-                <p id="about-me-p1" class="text-gray-300 mb-4">
-                    Estudio Ingeniería Informática, o lo intento. En mi tiempo libre hago cosas como esta página o mato
-                    el tiempo en algún jueguito, como estarás viendo arriba.
-                    <br>
-                    Si estoy ausente o offline, estoy en el gym o haciendome el interesante.
-                </p>
-                <p id="about-me-p2" class="text-gray-300">
-                    También puedes ver lo que estoy escuchando en Spotify en caso de que seas más cotilla.
-                    <br>
-                    <br>
-                    Por cierto no sé quién es de la foto pero va dura.
-                </p>
+        <!-- ============ ABOUT ============ -->
+        <section id="about">
+            <div class="section-head reveal">
+                <p class="section-eyebrow">whoami</p>
+                <h2 class="section-title" id="about-title">Sobre mí</h2>
             </div>
-        </div>
 
-        <div class="mt-12">
-            <h2 id="my-things-title" class="text-3xl font-bold mb-8 text-center">Mis Cosas</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div
-                    class="bg-gray-800 rounded-xl overflow-hidden hover:transform hover:-translate-y-1 transition-transform duration-200">
-                    <div class="h-48">
-                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/44e12c99-0120-4b16-b2de-9892ff118b44.png"
-                            class="w-full h-full object-cover clickable"
-                            onclick="window.open('./docs/cv.pdf', '_blank')">
+            <div class="about-grid reveal">
+                <div class="about-text">
+                    <p id="about-p1">
+                        <strong>Estudio Ingeniería Informática</strong> y dedico buena parte de mi tiempo libre a
+                        levantar y mantener infraestructura propia: un homelab con Proxmox, contenedores Docker,
+                        monitorización (Grafana, Prometheus, Uptime Kuma) y una VPN mesh con Tailscale para acceder
+                        a todo desde cualquier sitio.
+                    </p>
+                    <p id="about-p2">
+                        También desarrollo un <strong>bot de trading algorítmico</strong> sobre Freqtrade con modelos
+                        propios de machine learning (LightGBM), y me interesa cada vez más el lado ofensivo y
+                        defensivo de la seguridad: redes, hardening de servicios expuestos y buenas prácticas de
+                        despliegue.
+                    </p>
+                    <p id="about-p3">
+                        Cómodo trabajando en Linux, Docker Compose, Windows y macOS. Si el estado de arriba marca
+                        "ausente", probablemente esté en el gimnasio o depurando algo que rompí yo mismo.
+                    </p>
+                </div>
+
+                <div class="stack-panel">
+                    <p class="stack-panel-title">$ neofetch --stack</p>
+
+                    <div class="stack-group">
+                        <div class="stack-group-name" id="stack-infra">Infraestructura &amp; Self-Hosting</div>
+                        <div class="stack-item">
+                            <div class="stack-item-row"><span class="stack-item-name">Proxmox / Docker</span><span class="stack-item-pct">avanzado</span></div>
+                            <div class="bar-track"><div class="bar-fill" style="width:85%"></div></div>
+                        </div>
+                        <div class="stack-item">
+                            <div class="stack-item-row"><span class="stack-item-name">Grafana / Prometheus</span><span class="stack-item-pct">avanzado</span></div>
+                            <div class="bar-track"><div class="bar-fill" style="width:78%"></div></div>
+                        </div>
+                        <div class="stack-item">
+                            <div class="stack-item-row"><span class="stack-item-name">Networking / Tailscale</span><span class="stack-item-pct">intermedio</span></div>
+                            <div class="bar-track"><div class="bar-fill" style="width:70%"></div></div>
+                        </div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold">CV</h3>
-                        <p id="cv-desc" class="text-gray-400 mt-2">Curriculum Vitae, para tenerlo a mano.</p>
+
+                    <div class="stack-group">
+                        <div class="stack-group-name" id="stack-dev">Desarrollo &amp; Automatización</div>
+                        <div class="stack-item">
+                            <div class="stack-item-row"><span class="stack-item-name">Python</span><span class="stack-item-pct">avanzado</span></div>
+                            <div class="bar-track"><div class="bar-fill" style="width:80%"></div></div>
+                        </div>
+                        <div class="stack-item">
+                            <div class="stack-item-row"><span class="stack-item-name">Bash / CLI tooling</span><span class="stack-item-pct">avanzado</span></div>
+                            <div class="bar-track"><div class="bar-fill" style="width:75%"></div></div>
+                        </div>
+                    </div>
+
+                    <div class="stack-group">
+                        <div class="stack-group-name" id="stack-sec">Seguridad (en progreso)</div>
+                        <div class="stack-item">
+                            <div class="stack-item-row"><span class="stack-item-name">Hardening &amp; despliegue seguro</span><span class="stack-item-pct">aprendiendo</span></div>
+                            <div class="bar-track"><div class="bar-fill" style="width:45%"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ PROJECTS ============ -->
+        <section id="projects">
+            <div class="section-head reveal">
+                <p class="section-eyebrow">ls -la ~/projects</p>
+                <h2 class="section-title" id="projects-title">Proyectos</h2>
+            </div>
+
+            <div class="projects-grid reveal">
+
+                <!-- CV -->
+                <div class="card">
+                    <div class="card-bar">
+                        <span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span>
+                        <span class="card-filename">cv.pdf</span>
+                    </div>
+                    <div class="card-thumb-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6M9 9h1"/></svg>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title" id="cv-title">Curriculum Vitae</h3>
+                        <p class="card-desc" id="cv-desc">Formación, proyectos y experiencia, siempre a mano y actualizado.</p>
+                        <div class="tag-row"><span class="tag">PDF</span></div>
+                        <a class="card-link" onclick="window.open('./docs/cv.pdf', '_blank')" href="#" id="cv-link">$ ./open →</a>
                     </div>
                 </div>
 
-                <div
-                    class="bg-gray-800 rounded-xl overflow-hidden hover:transform hover:-translate-y-1 transition-transform duration-200">
-                    <div class="h-48">
-                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0ceddf8c-440d-4dff-a1c1-be72125e6f82.png"
-                            class="w-full h-full object-cover clickable"
-                            onclick="window.open('./Menu/index.html', '_blank')">
+                <!-- Fuel monitoring -->
+                <div class="card">
+                    <div class="card-bar">
+                        <span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span>
+                        <span class="card-filename">fuel-monitor/</span>
                     </div>
-                    <div class="p-6">
-                        <h3 id="menu-title" class="text-xl font-semibold">Menú de Restaurante</h3>
-                        <p id="menu-desc" class="text-gray-400 mt-2">Menú para un restaurante ficticio por si algún día
-                            alguno real me contrata para digitalizar el suyo. <br> (Cuidado con el modo oscuro)</p>
+                    <div class="card-thumb">
+                        <img src="./docs/gas.PNG" alt="Captura de la aplicación de monitoreo de combustible">
                     </div>
-                </div>
-
-                <div
-                    class="bg-gray-800 rounded-xl overflow-hidden hover:transform hover:-translate-y-1 transition-transform duration-200">
-                    <div class="h-48">
-                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4ebf122a-6602-4bc7-a0e5-d59d8ca1b075.png"
-                            class="w-full h-full object-cover clickable"
-                            onclick="window.open('./docs/xd.mp4', '_blank')">
-                    </div>
-                    <div class="p-6">
-                        <h3 id="photo-title" text-xl font-semibold">Para futuros "proyectos"</h3>
-                        <p id="photo-desc" class="text-gray-400 mt-2">Ser fotógrafo no es un trabajo.</p>
-                    </div>
-                </div>
-
-                <div
-                    class="bg-gray-800 rounded-xl overflow-hidden hover:transform hover:-translate-y-1 transition-transform duration-200">
-                    <div class="h-48">
-                        <img src="./docs/gas.PNG"
-                            class="w-full h-full object-cover clickable"
-                            onclick="window.open('https://gas-457.pages.dev/')">
-                    </div>
-                    <div class="p-6">
-                        <h3 id="gas-title" class="text-xl font-semibold">Aplicación Web de Monitoreo de Combustible</h3>
-                        <p id="gas-desc" class="text-gray-400 mt-2">Debido a la nueva moda o tendencia del "vibecoding" me he propuesto crear esta pequeña app, tanto front como back y una pequeña BD, usando 
-                            exclusivamente IA sin tocar yo nada de código.
-                            <br>
+                    <div class="card-body">
+                        <h3 class="card-title" id="gas-title">Monitor de Consumo de Combustible</h3>
+                        <p class="card-desc" id="gas-desc">
+                            Aplicación web full-stack (frontend, backend y base de datos) construida íntegramente
+                            con IA como ejercicio de "vibecoding" — puesta a prueba deliberada del enfoque.
                         </p>
+                        <div class="tag-row"><span class="tag">frontend</span><span class="tag">backend</span><span class="tag">BD</span></div>
+                        <a class="card-link" href="https://gas-457.pages.dev/" target="_blank" rel="noopener" id="gas-link">$ ./deploy →</a>
                     </div>
                 </div>
 
-                <div
-                    class="bg-gray-800 rounded-xl overflow-hidden hover:transform hover:-translate-y-1 transition-transform duration-200">
-                    <div class="h-48">
-                        <img src="./docs/proyecto.jpg"
-                            class="w-full h-full object-cover clickable"
-                            onclick="window.open('https://tsw-p4t5.onrender.com')">
+                <!-- Group Task -->
+                <div class="card">
+                    <div class="card-bar">
+                        <span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span>
+                        <span class="card-filename">group-task/</span>
                     </div>
-                    <div class="p-6">
-                        <h3 id="grouptask-title" class="text-xl font-semibold">Group Task</h3>
-                        <p id="grouptask-desc" class="text-gray-400 mt-2">Aplicación web para la gestión de proyectos, permitiendo la invitación al proyecto a otros usuarios y la incorporación de tareas al mismo.
-                            <br>
+                    <div class="card-thumb">
+                        <img src="./docs/proyecto.jpg" alt="Captura de la aplicación Group Task">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title" id="grouptask-title">Group Task</h3>
+                        <p class="card-desc" id="grouptask-desc">
+                            Gestor de proyectos colaborativo: invitación de usuarios, asignación de tareas y
+                            seguimiento de progreso en equipo.
                         </p>
+                        <div class="tag-row"><span class="tag">web app</span><span class="tag">colaborativo</span></div>
+                        <a class="card-link" href="https://tsw-p4t5.onrender.com" target="_blank" rel="noopener" id="grouptask-link">$ ./deploy →</a>
+                    </div>
+                </div>
+
+                <!-- Menu -->
+                <div class="card">
+                    <div class="card-bar">
+                        <span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span>
+                        <span class="card-filename">menu-app/</span>
+                    </div>
+                    <div class="card-thumb-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3v18M9 3v18M9 3c0 3-3 3-3 6s3 3 3 6M15 3v18M15 8h4a2 2 0 0 1 2 2v10"/></svg>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title" id="menu-title">Menú Digital de Restaurante</h3>
+                        <p class="card-desc" id="menu-desc">
+                            Maqueta de digitalización de carta para un restaurante ficticio, con soporte de modo
+                            oscuro — pensada como muestra reutilizable para clientes reales.
+                        </p>
+                        <div class="tag-row"><span class="tag">frontend</span><span class="tag">UI/UX</span></div>
+                        <a class="card-link" onclick="window.open('./Menu/index.html', '_blank')" href="#" id="menu-link">$ ./open →</a>
                     </div>
                 </div>
 
             </div>
-        </div>
+        </section>
+
+        <!-- ============ CONTACT ============ -->
+        <section id="contact">
+            <div class="section-head reveal">
+                <p class="section-eyebrow">ssh dani@contact</p>
+                <h2 class="section-title" id="contact-title">Hablemos</h2>
+            </div>
+
+            <div class="contact-panel reveal">
+                <span class="term-title" id="contact-sub">¿Prácticas, colaboración o simplemente hablar de infraestructura? Escríbeme.</span>
+                <div class="contact-links">
+                    <a class="btn primary" href="mailto:contacto@danidr12.dev">✉ Email</a>
+                    <a class="btn" href="https://github.com/DaniDR12" target="_blank" rel="noopener">⌘ GitHub</a>
+                    <button class="btn" onclick="window.open('./docs/cv.pdf', '_blank')">↓ <span id="cta-cv-2">CV</span></button>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer class="bg-gray-800 py-8 mt-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p id="footer-text" class="text-gray-400">Jason no es un lenguaje de programación legítimo</p>
+    <footer>
+        <div class="wrap footer-row">
+            <p class="footer-text" id="footer-text">© 2026 dani · construido a mano, desplegado con GitHub Pages</p>
+            <p class="footer-text">status: <span style="color:var(--ok)">● operational</span></p>
         </div>
     </footer>
 
     <script src="./scripts/socket.js"></script>
     <script src="./scripts/lang.js"></script>
+    <script src="./scripts/terminal.js"></script>
+    <script src="./scripts/reveal.js"></script>
 </body>
 
 </html>
